@@ -23,6 +23,11 @@ namespace FinanceManager
                url: "{controller}/{action}/{id}",
                defaults: new { controller = "Transactions", action = "Index", id = UrlParameter.Optional }
            );
-    }
+            routes.MapRoute(
+                name: "Reports",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Reports", action = "AccountBalanceReport", id = UrlParameter.Optional }
+            );
+        }
     }
 }

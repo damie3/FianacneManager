@@ -6,7 +6,7 @@ namespace FinanceManager.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<FinanceManager.Models.Context.TransactionsContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<FinanceManager.Models.Context.FinanceManagerContext>
     {
         public Configuration()
         {
@@ -14,7 +14,7 @@ namespace FinanceManager.Migrations
             SetSqlGenerator("MySql.Data.MySqlClient", new CustomMySqlMigrationSqlGenerator());
     }
 
-        protected override void Seed(FinanceManager.Models.Context.TransactionsContext context)
+        protected override void Seed(FinanceManager.Models.Context.FinanceManagerContext context)
         {
             //  This method will be called after migrating to the latest version.
 

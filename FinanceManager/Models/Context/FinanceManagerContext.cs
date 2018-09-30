@@ -7,9 +7,11 @@ using System.Web;
 
 namespace FinanceManager.Models.Context
 {
-    public class TransactionsContext : DbContext
+    using Period;
+
+    public class FinanceManagerContext : DbContext
     {
-        public TransactionsContext(): base("name=FinanceManagerContext")
+        public FinanceManagerContext(): base("name=FinanceManagerContext")
         {
 
         }
@@ -21,9 +23,9 @@ namespace FinanceManager.Models.Context
             base.OnModelCreating(modelBuilder);
         }
 
-        public System.Data.Entity.DbSet<FinanceManager.Models.Transaction.TransactionCategory> TransactionCategories { get; set; }
-        public System.Data.Entity.DbSet<FinanceManager.Models.Transaction.TransactionPeriod> TransactionPeriodss { get; set; }
-        public System.Data.Entity.DbSet<FinanceManager.Models.Transaction.TransactionSource> TransactionSources { get; set; }
+        public System.Data.Entity.DbSet<Transaction.TransactionCategory> TransactionCategories { get; set; }
+        public System.Data.Entity.DbSet<Period>Periods { get; set; }
+        public System.Data.Entity.DbSet<FinanceManager.Models.Account.Account> Accounts { get; set; }
         public System.Data.Entity.DbSet<FinanceManager.Models.Transaction.Transaction> Transactions { get; set; }
     }
 }

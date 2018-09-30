@@ -4,12 +4,12 @@ using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-namespace FinanceManager.Models.Transaction
+namespace FinanceManager.Models.Account
 {
-    public class TransactionSource
+    public class Account
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int TransactionSourceId {get; set;}
+        public int AccountId {get; set;}
         [Index(IsUnique = true)]
         [StringLength(20)]
         public string Name { get; set; }

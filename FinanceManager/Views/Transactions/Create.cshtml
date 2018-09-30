@@ -17,10 +17,10 @@
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">
-        @Html.Label("Source", htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.Label("Account", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.TransactionSourceName, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.TransactionSourceName, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => model.AccountName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.AccountName, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="form-group">

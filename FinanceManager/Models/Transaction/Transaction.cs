@@ -7,26 +7,23 @@ using System.Web;
 
 namespace FinanceManager.Models.Transaction
 {
+    using Account;
+    using Period;
+
     public class Transaction
     {
         
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int TransactionId { get; set; }
-        public TransactionPeriod Period { get; set; } = new TransactionPeriod();
-        
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MM-yyyy}")]
         public DateTime TransactionDate { get; set; }
+        [StringLength(50)]
         public string Description { get; set; }
         public TransactionCategory TransactionCategory{ get;set; } = new TransactionCategory();
         public double Amount { get; set; }
-        public TransactionSource TransactionSource { get; set; } = new TransactionSource();
+        public Account Account { get; set; } = new Account();
+        public Period Period { get; set; } = new Period();
 
-        [NotMapped]
-        public string TransactionPeriodName
-        {
-            get => Period.Name;
-            set => Period.Name = value;
-        }
         [NotMapped]
         public string TransactionCategoryName
         {
@@ -34,10 +31,10 @@ namespace FinanceManager.Models.Transaction
             set => TransactionCategory.Name = value;
         }
         [NotMapped]
-        public string TransactionSourceName
+        public string AccountName
         {
-            get => TransactionSource.Name;
-            set => TransactionSource.Name = value;
+            get => Account.Name;
+            set => Account.Name = value;
         }
     }
 }

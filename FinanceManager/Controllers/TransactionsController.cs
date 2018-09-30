@@ -7,14 +7,16 @@ using FinanceManager.Models.Transaction;
 
 namespace FinanceManager.Controllers
 {
+    using System.Linq;
+
     public class TransactionsController : Controller
     {
-        private TransactionsContext db = new TransactionsContext();
+        private FinanceManagerContext db = new FinanceManagerContext();
 
         // GET: Transactions
         public async Task<ActionResult> Index()
         {
-            return View(await db.Transactions.ToListAsync());
+            return View(await db.Transactions.Include(x => x.Account).Include(x=>x.TransactionCategory).OrderByDescending( x => x.TransactionDate).ToListAsync());
         }
 
         // GET: Transactions/Details/5
@@ -43,7 +45,7 @@ namespace FinanceManager.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "TransactionId,TransactionDate,Description,Amount,TransactionPeriodName,TransactionSourceName,TransactionCategoryName")] Transaction transaction)
+        public async Task<ActionResult> Create([Bind(Include = "TransactionDate,Description,Amount,AccountName,TransactionCategoryName")] Transaction transaction)
         {
             if (ModelState.IsValid)
             {

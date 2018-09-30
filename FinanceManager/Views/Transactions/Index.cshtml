@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<FinanceManager.Models.Transaction.Transaction>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Transactions";
 }
 
-<h2>Index</h2>
+<h2>Transactions</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -12,10 +12,7 @@
 <table class="table">
     <tr>
         <th>
-            Source
-        </th>
-        <th>
-            Period
+            Account
         </th>
         <th>
             Date
@@ -35,10 +32,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.TransactionSource.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Period.Name)
+            @Html.DisplayFor(modelItem => item.AccountName)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.TransactionDate)
