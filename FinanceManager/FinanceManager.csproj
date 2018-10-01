@@ -160,6 +160,11 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Migrations\201809301857548_v1.2.cs" />
+    <Compile Include="Migrations\201809301857548_v1.2.Designer.cs">
+      <DependentUpon>201809301857548_v1.2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Transactions\TransactionsViewViewModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\TransactionsController.cs" />
@@ -182,6 +187,7 @@
     <Compile Include="Migrations\Helper\CustomMySqlMigrationSqlGenerator.cs" />
     <Compile Include="Models\Context\FinanceManagerContext.cs" />
     <Compile Include="Models\Reports\AccountBalanceReportItem.cs" />
+    <Compile Include="Models\Reports\ExpenditurePerCategoryPerPeriodReport.cs" />
     <Compile Include="Models\Reports\ExpenditurePerCategoryPerPeriodReportItem.cs" />
     <Compile Include="Models\Transaction\Transaction.cs" />
     <Compile Include="Models\Transaction\TransactionCategory.cs" />
@@ -194,6 +200,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\datatables.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -235,6 +242,7 @@
     <Content Include="Views\Transactions\Create.cshtml" />
     <Content Include="Views\Reports\AccountBalanceReport.cshtml" />
     <Content Include="Views\Reports\ExpenditurePerCategoryPerPeriodReport.cshtml" />
+    <Content Include="Views\Transactions\TransactionsView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -262,6 +270,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201809291429573_v1.1.resx">
       <DependentUpon>201809291429573_v1.1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201809301857548_v1.2.resx">
+      <DependentUpon>201809301857548_v1.2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

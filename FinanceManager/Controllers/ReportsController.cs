@@ -25,9 +25,10 @@ namespace FinanceManager.Controllers
 
         public async Task<ActionResult> ExpenditurePerCategoryPerPeriodReport()
         {
-            var result = db.Transactions.GroupBy(t => new {PeriodName = t.Period.Name, TransactionCategoryName = t.TransactionCategory.Name}).Select(g => new ExpenditurePerCategoryPerPeriodReportItem()
-                { Category = g.Key.TransactionCategoryName, Period = g.Key.PeriodName, Amount = g.Sum(t => t.Amount) });
-            return View(await result.ToListAsync());
+            var result = await db.Transactions.GroupBy(t => new {PeriodName = t.Period.Name, TransactionCategoryName = t.TransactionCategory.Name}).Select(g => new ExpenditurePerCategoryPerPeriodReportItem()
+                { Category = g.Key.TransactionCategoryName, Period = g.Key.PeriodName, Amount = g.Sum(t => t.Amount)}).ToListAsync();
+
+            return View(new ExpenditurePerCategoryPerPeriodReport(){Items = result});
         }
     }
 }

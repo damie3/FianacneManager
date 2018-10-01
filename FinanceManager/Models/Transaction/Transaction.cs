@@ -20,6 +20,7 @@ namespace FinanceManager.Models.Transaction
         [StringLength(50)]
         public string Description { get; set; }
         public TransactionCategory TransactionCategory{ get;set; } = new TransactionCategory();
+        [DisplayFormat(DataFormatString = "{0:0.00}")]
         public double Amount { get; set; }
         public Account Account { get; set; } = new Account();
         public Period Period { get; set; } = new Period();

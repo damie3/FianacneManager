@@ -1,33 +1,35 @@
 ﻿@model IEnumerable<FinanceManager.Models.Reports.AccountBalanceReportItem>
-
+<link rel="stylesheet" href='../../Content/datatables.css' type="text/css" />
 @{
     ViewBag.Title = "Account Balances";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>AccountBalance</h2>
+<h2>Accounts</h2>
 
 <p>
     @Html.ActionLink("Expenditure Report", "ExpenditurePerCategoryPerPeriodReport")
 </p>
 <table class="table">
     <tr>
-        @foreach (var item in Model)
-        {
+        <th> Account</th>
+            @foreach (var item in Model)
+            {
             <th>
                 @Html.DisplayFor(modelItem => item.AccountName)
             </th>
         }
-    </tr>
+        </tr>
     <tr>
+        <th scope="row">Balance</th>
         @foreach (var item in Model)
         {
 
             <td>
                 @Html.DisplayFor(modelItem => item.Amount)
             </td>
-    }
-        
+        }
+
     </tr>
 
 </table>

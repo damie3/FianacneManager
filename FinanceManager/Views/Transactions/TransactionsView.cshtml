@@ -1,0 +1,71 @@
+﻿<link rel="stylesheet" href='../../Content/datatables.css' type="text/css" />
+@model FinanceManager.ViewModels.Transactions.TransactionsViewViewModel
+@{
+    ViewBag.Title = "TransactionsView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Transactions</h2>
+@Html.DisplayFor(account => Model.AccountName)
+@Html.DisplayFor(category => Model.CategoryName)
+@Html.DisplayFor(period => Model.PeriodStart)
+@Html.DisplayFor(period => Model.PeriodEnd)
+@Html.DisplayFor(total => Model.Total)
+
+<table class="table">
+    <tr>
+    @if (Model.AccountName == "All")
+    {
+        <th>
+            Account
+        </th>
+    }
+
+        <th>
+            Date
+        </th>
+    @if (Model.CategoryName == "All")
+    {
+        <th>
+            Category
+        </th>
+    }
+        <th>
+            Description
+        </th>
+        <th>
+            Amount
+        </th>
+        
+    </tr>
+
+    @foreach (var item in Model.Transactions) {
+        <tr>
+            @if(Model.AccountName == "All") {
+                var parameters = Model.GetParameters(item.AccountName);
+            <td>
+
+                @Html.ActionLink(item.AccountName, "Index", parameters)
+            </td>
+            }
+            <td>
+                @Html.DisplayFor(modelItem => item.TransactionDate)
+            </td>
+    @if (Model.CategoryName == "All")
+    {
+        var parameters = Model.GetParameters(category: item.TransactionCategoryName);
+            <td>
+                @Html.ActionLink(item.TransactionCategoryName, "Index", parameters)
+            </td>
+    }
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td style="text-align: right;">
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+        </tr>
+    }
+
+</table>
+

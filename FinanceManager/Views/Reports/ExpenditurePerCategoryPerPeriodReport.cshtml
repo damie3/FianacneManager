@@ -1,5 +1,5 @@
-﻿@model IEnumerable<FinanceManager.Models.Reports.ExpenditurePerCategoryPerPeriodReportItem>
-
+﻿@model FinanceManager.Models.Reports.ExpenditurePerCategoryPerPeriodReport
+<link rel="stylesheet" href='../../Content/datatables.css' type="text/css"/>
 @{
     ViewBag.Title = "Expenditure Report";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -10,34 +10,36 @@
 <p>
     @Html.ActionLink("Account Balances", "AccountBalanceReport")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Category)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Period)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Amount)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Category)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Period)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Amount)
-        </td>
-        <td>
-        </td>
-    </tr>
-}
+<table class="table">
+<tr>
+    <th>
+        
+    </th>
+    @foreach (var period in Model.Periods)
+    {
+        <th >
+            @Html.DisplayFor(periodItem => period)
+        </th>
+    }
+  </tr>
+ 
+
+ @foreach (var category in Model.Categories)
+ {
+     <tr>
+         <th scope="row">
+             @Html.DisplayFor(categoryItem => category)
+         </th>
+         @foreach (var period in Model.Periods)
+         {
+             var item = Model.GetAmount(period, category);
+             <td style="text-align: right;">
+                 @Html.DisplayFor(amount => item.Amount)
+             </td>
+         }
+     </tr>
+ }
+ 
 
 </table>

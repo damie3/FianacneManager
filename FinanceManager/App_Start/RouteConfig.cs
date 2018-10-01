@@ -18,11 +18,16 @@ namespace FinanceManager
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+           // routes.MapRoute(
+           //    name: "Transactions",
+           //    url: "{controller}/{id}",
+           //    defaults: new { controller = "Transactions", action = "Index", id = UrlParameter.Optional }
+           //);
             routes.MapRoute(
-               name: "Transactions",
-               url: "{controller}/{action}/{id}",
-               defaults: new { controller = "Transactions", action = "Index", id = UrlParameter.Optional }
-           );
+                name: "Transactions",
+                url: "{controller}/{action}/{account}/{category}/{period}",
+                defaults: new { controller = "Transactions", action = "Index", account = UrlParameter.Optional, category = UrlParameter.Optional, period = UrlParameter.Optional }
+            );
             routes.MapRoute(
                 name: "Reports",
                 url: "{controller}/{action}/{id}",

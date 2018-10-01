@@ -7,17 +7,22 @@ using FinanceManager.Models.Transaction;
 
 namespace FinanceManager.Controllers
 {
+    using System;
     using System.Linq;
+    using Microsoft.Ajax.Utilities;
+    using Models.Account;
+    using Models.Period;
+    using ViewModels.Transactions;
 
     public class TransactionsController : Controller
     {
         private FinanceManagerContext db = new FinanceManagerContext();
 
         // GET: Transactions
-        public async Task<ActionResult> Index()
-        {
-            return View(await db.Transactions.Include(x => x.Account).Include(x=>x.TransactionCategory).OrderByDescending( x => x.TransactionDate).ToListAsync());
-        }
+        //public async Task<ActionResult> Index()
+        //{
+        //    return View(await db.Transactions.Include(x => x.Account).Include(x => x.TransactionCategory).OrderByDescending(x => x.TransactionDate).ToListAsync());
+        //}
 
         // GET: Transactions/Details/5
         public async Task<ActionResult> Details(int? id)
@@ -32,6 +37,37 @@ namespace FinanceManager.Controllers
                 return HttpNotFound();
             }
             return View(transaction);
+        }
+
+        public async Task<ActionResult> Index(string account, string category, string period)
+        {
+            Account accountModel = null;
+            TransactionCategory categoryModel = null;
+            Period periodModel = null;
+            var dbTransactions = db.Transactions.Include(t=>t.Period).Include(t=>t.Account).Include(t=>t.TransactionCategory);
+            if (!account.IsNullOrWhiteSpace() && account != "All")
+            {
+                accountModel = await db.Accounts.Where(a => a.Name == account).FirstAsync();
+                dbTransactions = dbTransactions.Where(t => t.Account.AccountId == accountModel.AccountId);
+            }
+            if (!category.IsNullOrWhiteSpace() && category != "All")
+            {
+                categoryModel = await db.TransactionCategories.Where(a => a.Name == category).FirstAsync();
+                dbTransactions = dbTransactions.Where(t => t.TransactionCategory.TransactionCategoryId== categoryModel.TransactionCategoryId);
+            }
+            if (!period.IsNullOrWhiteSpace() && period != "All")
+            {
+                periodModel = await db.Periods.Where(a => a.Name == period).FirstAsync();
+                dbTransactions = dbTransactions.Where(t => t.Period.PeriodId == periodModel.PeriodId);
+            }
+
+            var results = await dbTransactions.OrderByDescending(t => t.TransactionDate).ToListAsync();
+            return View("TransactionsView",  new TransactionsViewViewModel()
+            {
+                Account = accountModel, Period = periodModel, TransactionCategory = categoryModel,
+                Transactions = results
+            });
+
         }
 
         // GET: Transactions/Create
