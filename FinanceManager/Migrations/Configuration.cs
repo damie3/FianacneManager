@@ -10,9 +10,10 @@ namespace FinanceManager.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            //AutomaticMigrationsEnabled = true;
             SetSqlGenerator("MySql.Data.MySqlClient", new CustomMySqlMigrationSqlGenerator());
-    }
+            AutomaticMigrationDataLossAllowed = true;
+        }
 
         protected override void Seed(FinanceManager.Models.Context.FinanceManagerContext context)
         {

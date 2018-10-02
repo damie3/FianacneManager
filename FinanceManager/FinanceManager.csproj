@@ -160,28 +160,19 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Migrations\201809301857548_v1.2.cs" />
-    <Compile Include="Migrations\201809301857548_v1.2.Designer.cs">
-      <DependentUpon>201809301857548_v1.2.cs</DependentUpon>
+    <Compile Include="Controllers\BudgetController.cs" />
+    <Compile Include="Migrations\201810012346194_Initial.cs" />
+    <Compile Include="Migrations\201810012346194_Initial.Designer.cs">
+      <DependentUpon>201810012346194_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\Budget\BudgetItem.cs" />
+    <Compile Include="ViewModels\Budget\BudgetViewViewModel.cs" />
     <Compile Include="ViewModels\Transactions\TransactionsViewViewModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\TransactionsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201809291311204_InitialCreate.cs" />
-    <Compile Include="Migrations\201809291311204_InitialCreate.Designer.cs">
-      <DependentUpon>201809291311204_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201809291407291_v1.cs" />
-    <Compile Include="Migrations\201809291407291_v1.Designer.cs">
-      <DependentUpon>201809291407291_v1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201809291429573_v1.1.cs" />
-    <Compile Include="Migrations\201809291429573_v1.1.Designer.cs">
-      <DependentUpon>201809291429573_v1.1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\Helper\CustomMySqlMigrationSqlGenerator.cs" />
@@ -190,7 +181,7 @@
     <Compile Include="Models\Reports\ExpenditurePerCategoryPerPeriodReport.cs" />
     <Compile Include="Models\Reports\ExpenditurePerCategoryPerPeriodReportItem.cs" />
     <Compile Include="Models\Transaction\Transaction.cs" />
-    <Compile Include="Models\Transaction\TransactionCategory.cs" />
+    <Compile Include="Models\Category\Category.cs" />
     <Compile Include="Models\Period\Period.cs" />
     <Compile Include="Models\Account\Account.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -243,10 +234,10 @@
     <Content Include="Views\Reports\AccountBalanceReport.cshtml" />
     <Content Include="Views\Reports\ExpenditurePerCategoryPerPeriodReport.cshtml" />
     <Content Include="Views\Transactions\TransactionsView.cshtml" />
+    <Content Include="Views\Budget\BudgetView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\Budget\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -262,17 +253,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201809291311204_InitialCreate.resx">
-      <DependentUpon>201809291311204_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809291407291_v1.resx">
-      <DependentUpon>201809291407291_v1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809291429573_v1.1.resx">
-      <DependentUpon>201809291429573_v1.1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201809301857548_v1.2.resx">
-      <DependentUpon>201809301857548_v1.2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201810012346194_Initial.resx">
+      <DependentUpon>201810012346194_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

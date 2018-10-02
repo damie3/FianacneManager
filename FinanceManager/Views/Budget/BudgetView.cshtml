@@ -1,0 +1,29 @@
+﻿<link rel="stylesheet" href='../Content/datatables.css' type="text/css" />
+@using FinanceManager.Models.Period
+@model FinanceManager.ViewModels.Budget.BudgetViewViewModel
+@{
+    ViewBag.Title = "BudgetView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Budget</h2>
+@foreach (var period in Model.Periods)
+{
+    @Html.DisplayFor(account => period.Name)
+<table class="table">
+    <tr>
+        <th>Category</th>
+        <th>Description</th>
+        <th>Amount</th>
+    </tr>
+    @foreach (var budgetItem in Model.GetBudgetItemsByPeriod(period))
+    {
+        <tr>
+        <td>@Html.DisplayFor(category => budgetItem.Category.Name)</td>
+        <td>@Html.DisplayFor(description => budgetItem.Description)</td>
+        <td>@Html.DisplayFor(amount => budgetItem.Amount)</td>
+        </tr>
+    }
+</table>
+   }
+

@@ -1,24 +1,21 @@
-﻿namespace FinanceManager.Models.Period
+﻿namespace FinanceManager.Models.Category
 {
-    using System;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
-    public class Period
+    public class Category
     {
         [Required]
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int PeriodId { get; set; }
+        public int CategoryId { get; set; }
 
-        [Column(TypeName = "NVARCHAR")]
         [Index(IsUnique = true)]
+        [Column(TypeName = "NVARCHAR")]
         [StringLength(20)]
         public string Name { get; set; }
 
-        [Required]
-        public DateTime PeriodStart { get; set; }
-
-        [Required]
-        public DateTime PeriodEnd { get; set; }
+        [Column(TypeName = "NVARCHAR")]
+        [StringLength(30)]
+        public string Description { get; set; }
     }
 }

@@ -7,6 +7,8 @@ using System.Web;
 
 namespace FinanceManager.Models.Context
 {
+    using Budget;
+    using Category;
     using Period;
 
     public class FinanceManagerContext : DbContext
@@ -23,9 +25,11 @@ namespace FinanceManager.Models.Context
             base.OnModelCreating(modelBuilder);
         }
 
-        public System.Data.Entity.DbSet<Transaction.TransactionCategory> TransactionCategories { get; set; }
+        public System.Data.Entity.DbSet<Category> TransactionCategories { get; set; }
         public System.Data.Entity.DbSet<Period>Periods { get; set; }
         public System.Data.Entity.DbSet<FinanceManager.Models.Account.Account> Accounts { get; set; }
         public System.Data.Entity.DbSet<FinanceManager.Models.Transaction.Transaction> Transactions { get; set; }
+
+        public System.Data.Entity.DbSet<FinanceManager.Models.Budget.BudgetItem> BudgetItems { get; set; }
     }
 }

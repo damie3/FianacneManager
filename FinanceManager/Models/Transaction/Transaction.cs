@@ -8,28 +8,40 @@ using System.Web;
 namespace FinanceManager.Models.Transaction
 {
     using Account;
+    using Category;
     using Period;
 
     public class Transaction
     {
         
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Required]
         public int TransactionId { get; set; }
+
+        [Required]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MM-yyyy}")]
         public DateTime TransactionDate { get; set; }
-        [StringLength(50)]
+
+        [Column(TypeName = "NVARCHAR")]
+        [StringLength(30)]
         public string Description { get; set; }
-        public TransactionCategory TransactionCategory{ get;set; } = new TransactionCategory();
+
+        [Required]
+        public Category Category{ get;set; } = new Category();
         [DisplayFormat(DataFormatString = "{0:0.00}")]
         public double Amount { get; set; }
+
+        [Required]
         public Account Account { get; set; } = new Account();
+
+        [Required]
         public Period Period { get; set; } = new Period();
 
         [NotMapped]
         public string TransactionCategoryName
         {
-            get => TransactionCategory.Name;
-            set => TransactionCategory.Name = value;
+            get => Category.Name;
+            set => Category.Name = value;
         }
         [NotMapped]
         public string AccountName

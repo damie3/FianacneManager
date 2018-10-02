@@ -11,6 +11,7 @@ namespace FinanceManager.Controllers
     using System.Linq;
     using Microsoft.Ajax.Utilities;
     using Models.Account;
+    using Models.Category;
     using Models.Period;
     using ViewModels.Transactions;
 
@@ -21,7 +22,7 @@ namespace FinanceManager.Controllers
         // GET: Transactions
         //public async Task<ActionResult> Index()
         //{
-        //    return View(await db.Transactions.Include(x => x.Account).Include(x => x.TransactionCategory).OrderByDescending(x => x.TransactionDate).ToListAsync());
+        //    return View(await db.Transactions.Include(x => x.Account).Include(x => x.Category).OrderByDescending(x => x.TransactionDate).ToListAsync());
         //}
 
         // GET: Transactions/Details/5
@@ -42,9 +43,9 @@ namespace FinanceManager.Controllers
         public async Task<ActionResult> Index(string account, string category, string period)
         {
             Account accountModel = null;
-            TransactionCategory categoryModel = null;
+            Category categoryModel = null;
             Period periodModel = null;
-            var dbTransactions = db.Transactions.Include(t=>t.Period).Include(t=>t.Account).Include(t=>t.TransactionCategory);
+            var dbTransactions = db.Transactions.Include(t=>t.Period).Include(t=>t.Account).Include(t=>t.Category);
             if (!account.IsNullOrWhiteSpace() && account != "All")
             {
                 accountModel = await db.Accounts.Where(a => a.Name == account).FirstAsync();
@@ -53,7 +54,7 @@ namespace FinanceManager.Controllers
             if (!category.IsNullOrWhiteSpace() && category != "All")
             {
                 categoryModel = await db.TransactionCategories.Where(a => a.Name == category).FirstAsync();
-                dbTransactions = dbTransactions.Where(t => t.TransactionCategory.TransactionCategoryId== categoryModel.TransactionCategoryId);
+                dbTransactions = dbTransactions.Where(t => t.Category.CategoryId== categoryModel.CategoryId);
             }
             if (!period.IsNullOrWhiteSpace() && period != "All")
             {
@@ -64,7 +65,7 @@ namespace FinanceManager.Controllers
             var results = await dbTransactions.OrderByDescending(t => t.TransactionDate).ToListAsync();
             return View("TransactionsView",  new TransactionsViewViewModel()
             {
-                Account = accountModel, Period = periodModel, TransactionCategory = categoryModel,
+                Account = accountModel, Period = periodModel, Category = categoryModel,
                 Transactions = results
             });
 

@@ -5,6 +5,7 @@
     using System.ComponentModel.DataAnnotations;
     using System.Linq;
     using Models.Account;
+    using Models.Category;
     using Models.Period;
     using Models.Transaction;
 
@@ -17,8 +18,8 @@
         public DateTime PeriodEnd => Period?.PeriodEnd ?? Transactions.OrderByDescending(t => t.Period.PeriodEnd).Select(t => t.Period.PeriodEnd).First();
         public Account Account { get; set; }
         public string AccountName => Account?.Name ?? "All";
-        public TransactionCategory TransactionCategory { get; set; }
-        public string CategoryName => TransactionCategory?.Name ?? "All";
+        public Category Category { get; set; }
+        public string CategoryName => Category?.Name ?? "All";
         public IEnumerable<Transaction> Transactions { get; set; }
         [DisplayFormat(DataFormatString = "{0:0.00}")]
         public double Total => Transactions.Sum(t => t.Amount);
