@@ -27,6 +27,7 @@ namespace FinanceManager.Models.Budget
         public string Description { get; set; }
 
         [Required]
+        [DisplayFormat(DataFormatString = "{0:0.00}")]
         public double Amount { get; set; }
     }
 }

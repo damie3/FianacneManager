@@ -25,10 +25,15 @@ namespace FinanceManager.Controllers
         {
             
             var budgetItems = await db.BudgetItems.Include(t=>t.Period).Include(t=>t.Category).ToListAsync();
-           
+            var groupBy = budgetItems.GroupBy(i=> i.Period);
+            var result = groupBy.Select(s => new BudgetPeriodViewModel()
+            {
+                Period = s.Key,
+                Items = s.AsEnumerable()
+            });
             return View("BudgetView",  new BudgetViewViewModel()
             {
-                Items = budgetItems
+                Items = result
             });
 
         }

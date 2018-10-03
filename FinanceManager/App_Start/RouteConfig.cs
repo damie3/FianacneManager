@@ -25,8 +25,8 @@ namespace FinanceManager
            //);
             routes.MapRoute(
                 name: "Transactions",
-                url: "{controller}/{action}/{account}/{category}/{period}",
-                defaults: new { controller = "Transactions", action = "Index", account = UrlParameter.Optional, category = UrlParameter.Optional, period = UrlParameter.Optional }
+                url: "{controller}/{action}/{groupType}",
+                defaults: new { controller = "Transactions", action = "Index", groupType = UrlParameter.Optional}
             );
             routes.MapRoute(
                 name: "Budget",

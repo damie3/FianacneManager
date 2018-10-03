@@ -8,7 +8,9 @@ using FinanceManager.Models.Transaction;
 namespace FinanceManager.Controllers
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
+    using System.Web.WebPages;
     using Microsoft.Ajax.Utilities;
     using Models.Account;
     using Models.Category;
@@ -40,35 +42,56 @@ namespace FinanceManager.Controllers
             return View(transaction);
         }
 
-        public async Task<ActionResult> Index(string account, string category, string period)
+        public async Task<ActionResult> Index(string groupType)
         {
-            Account accountModel = null;
-            Category categoryModel = null;
-            Period periodModel = null;
-            var dbTransactions = db.Transactions.Include(t=>t.Period).Include(t=>t.Account).Include(t=>t.Category);
-            if (!account.IsNullOrWhiteSpace() && account != "All")
-            {
-                accountModel = await db.Accounts.Where(a => a.Name == account).FirstAsync();
-                dbTransactions = dbTransactions.Where(t => t.Account.AccountId == accountModel.AccountId);
-            }
-            if (!category.IsNullOrWhiteSpace() && category != "All")
-            {
-                categoryModel = await db.TransactionCategories.Where(a => a.Name == category).FirstAsync();
-                dbTransactions = dbTransactions.Where(t => t.Category.CategoryId== categoryModel.CategoryId);
-            }
-            if (!period.IsNullOrWhiteSpace() && period != "All")
-            {
-                periodModel = await db.Periods.Where(a => a.Name == period).FirstAsync();
-                dbTransactions = dbTransactions.Where(t => t.Period.PeriodId == periodModel.PeriodId);
-            }
+            var dbTransactions = await FetchTransactionsAndDependents();
+            dbTransactions = ApplySorting(dbTransactions);
+            var groupedTransactions = ApplyGrouping(groupType, dbTransactions);
 
-            var results = await dbTransactions.OrderByDescending(t => t.TransactionDate).ToListAsync();
-            return View("TransactionsView",  new TransactionsViewViewModel()
+            var results = groupedTransactions.Select(t => new TransactionGroupViewModel()
             {
-                Account = accountModel, Period = periodModel, Category = categoryModel,
-                Transactions = results
+                GroupName = t.Key,
+                Transactions = t.AsEnumerable()
             });
 
+            return View("TransactionsView", new TransactionsViewViewModel()
+            {
+                GroupType = groupType.IsEmpty() ? "Type" :groupType,
+                TransactionGroupViewModels = results
+            });
+
+        }
+
+        private async Task<IEnumerable<Transaction>> FetchTransactionsAndDependents()
+        {
+            return await db.Transactions.Include(t => t.Period).Include(t => t.Account).Include(t => t.Category).ToListAsync();
+        }
+
+        private IEnumerable<Transaction> ApplySorting(IEnumerable<Transaction> dbTransactions)
+        {
+            return dbTransactions.OrderByDescending(t => t.TransactionDate);
+        }
+
+        private IEnumerable<IGrouping<string, Transaction>> ApplyGrouping(string groupType, IEnumerable<Transaction> dbTransactions)
+        {
+            IEnumerable<IGrouping<string, Transaction>> grouped = null;
+            switch (groupType)
+            {
+                case "Category":
+                    grouped = dbTransactions.GroupBy(t => t.Category.Name).OrderBy(g => g.Key);
+                    break;
+                case "Period":
+                    grouped = dbTransactions.GroupBy(t => t.Period.Name).OrderByDescending(g => g.Key);
+                    break;
+                case "Account":
+                    grouped = dbTransactions.GroupBy(t => t.Account.Name).OrderBy(g => g.Key);
+                    break;
+                default:
+                    grouped = dbTransactions.GroupBy(t => "Transactions");
+                    break;
+            }
+
+            return grouped;
         }
 
         // GET: Transactions/Create

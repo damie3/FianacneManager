@@ -6,66 +6,47 @@
 }
 
 <h2>Transactions</h2>
-@Html.DisplayFor(account => Model.AccountName)
-@Html.DisplayFor(category => Model.CategoryName)
-@Html.DisplayFor(period => Model.PeriodStart)
-@Html.DisplayFor(period => Model.PeriodEnd)
-@Html.DisplayFor(total => Model.Total)
+@foreach (var item in Model.TransactionGroupViewModels)
+{
+    <div class="row">
+        <div class="container col-sm-12">
 
-<table class="table">
-    <tr>
-    @if (Model.AccountName == "All")
-    {
-        <th>
-            Account
-        </th>
-    }
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <span class="font-weight-bold">@Html.DisplayFor(periodName => Model.GroupType): </span> @Html.DisplayFor(groupName => item.GroupName)
+                        </div>
+                        <div class="col-sm-6 text-right">
+                            <span class="font-weight-bold">Total:</span> @Html.DisplayFor(periodTotal => item.Total)
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    @foreach (var transaction in item.Transactions)
+                    {
+                        <div class="row">
+                            <div class="col-sm-2 text-right">
+                                @Html.DisplayFor(date => transaction.TransactionDate)
+                            </div>
+                            <div class="col-sm-2">
+                                @Html.DisplayFor(transactionAccount => transaction.Account.Name)
+                            </div>
+                            <div class="col-sm-2">
+                                @Html.DisplayFor(transactionCategory => transaction.Category.Name)
+                            </div>
+                            <div class="col-sm-4 ">
+                                @Html.DisplayFor(description => transaction.Description)
+                            </div>
+                            <div class="col-sm-2 text-right">
+                                @Html.DisplayFor(amount => transaction.Amount)
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}
 
-        <th>
-            Date
-        </th>
-    @if (Model.CategoryName == "All")
-    {
-        <th>
-            Category
-        </th>
-    }
-        <th>
-            Description
-        </th>
-        <th>
-            Amount
-        </th>
-        
-    </tr>
-
-    @foreach (var item in Model.Transactions) {
-        <tr>
-            @if(Model.AccountName == "All") {
-                var parameters = Model.GetParameters(item.AccountName);
-            <td>
-
-                @Html.ActionLink(item.AccountName, "Index", parameters)
-            </td>
-            }
-            <td>
-                @Html.DisplayFor(modelItem => item.TransactionDate)
-            </td>
-    @if (Model.CategoryName == "All")
-    {
-        var parameters = Model.GetParameters(category: item.TransactionCategoryName);
-            <td>
-                @Html.ActionLink(item.TransactionCategoryName, "Index", parameters)
-            </td>
-    }
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td style="text-align: right;">
-                @Html.DisplayFor(modelItem => item.Amount)
-            </td>
-        </tr>
-    }
-
-</table>
 
