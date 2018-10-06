@@ -1,0 +1,50 @@
+﻿@model IEnumerable<FinanceManager.ViewModels.Reports.BudgetVsExpenditureViewModel>
+
+@{
+    ViewBag.Title = "BudgetVsExpenditureView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Budget Vs Expenditure</h2>
+
+@foreach (var item in Model)
+{
+    var itemId = "BVP" + item.Period.Name.Replace(" ", "").Replace("/", "");
+    <div class="row pb-2">
+        <div class="container col-sm-8">
+
+            <div class="card">
+                <div class="card-header" data-toggle="collapse" data-target="#@itemId"
+                     href="#@itemId">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <span class="font-weight-bold">Period: </span> @Html.DisplayFor(periodName => item.Period.Name)
+                        </div>
+                        <div class="col-sm-6 text-right">
+                            <span class="font-weight-bold">Total:</span> @Html.DisplayFor(periodTotal => item.Total)
+                        </div>
+                    </div>
+                </div>
+                <div id="@itemId" class="card-body panel-collapse collapse in">
+                    @foreach (var vm in item.ViewModelItems)
+                    {
+                        <div class="row">
+                            <div class="col-sm-4 text-right">
+                                @Html.DisplayFor(category => vm.Category.Name)
+                            </div>
+                            <div class="col-sm-4 text-right">
+                                @Html.DisplayFor(description => vm.BudgetAmount)
+                            </div>
+                            <div class="col-sm-4 text-right">
+                                @Html.DisplayFor(amount => vm.TransactionAmount)
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="container col-sm-4"></div>
+    </div>
+
+}
+

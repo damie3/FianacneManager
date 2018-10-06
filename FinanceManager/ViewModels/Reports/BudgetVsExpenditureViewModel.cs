@@ -2,6 +2,7 @@
 {
     using System.Collections;
     using System.Collections.Generic;
+    using System.Linq;
     using Models.Category;
     using Models.Period;
 
@@ -9,8 +10,8 @@
     {
         public Period Period { get; set; }
 
-        public IEnumerable<Category> Categories { get; set; }
-
         public IEnumerable<BudgetVsExpenditureViewModelItem> ViewModelItems { get; set; }
+
+        public double Total => ViewModelItems.Sum(s => s.BudgetAmount + s.TransactionAmount);
     }
 }
