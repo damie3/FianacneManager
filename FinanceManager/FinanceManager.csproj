@@ -169,6 +169,11 @@
     <Compile Include="ViewModels\Budget\CreateBudgetItemViewModel.cs" />
     <Compile Include="ViewModels\Budget\BudgetPeriodViewModel.cs" />
     <Compile Include="ViewModels\Budget\BudgetViewViewModel.cs" />
+    <Compile Include="ViewModels\Reports\BudgetVsExpenditureBudgetItem.cs" />
+    <Compile Include="ViewModels\Reports\BudgetVsExpenditureItem.cs" />
+    <Compile Include="ViewModels\Reports\BudgetVsExpenditureViewModel.cs" />
+    <Compile Include="ViewModels\Reports\BudgetVsExpenditureViewModelItem.cs" />
+    <Compile Include="ViewModels\Reports\BudgetVsExpenditureViewViewModel.cs" />
     <Compile Include="ViewModels\Transactions\CreateTransactionViewModel.cs" />
     <Compile Include="ViewModels\Transactions\TransactionGroupViewModel.cs" />
     <Compile Include="ViewModels\Transactions\TransactionsViewViewModel.cs" />
@@ -181,9 +186,9 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\Helper\CustomMySqlMigrationSqlGenerator.cs" />
     <Compile Include="Models\Context\FinanceManagerContext.cs" />
-    <Compile Include="Models\Reports\AccountBalanceReportItem.cs" />
-    <Compile Include="Models\Reports\ExpenditurePerCategoryPerPeriodReport.cs" />
-    <Compile Include="Models\Reports\ExpenditurePerCategoryPerPeriodReportItem.cs" />
+    <Compile Include="ViewModels\Reports\AccountBalanceReportItem.cs" />
+    <Compile Include="ViewModels\Reports\ExpenditurePerCategoryPerPeriodReport.cs" />
+    <Compile Include="ViewModels\Reports\ExpenditurePerCategoryPerPeriodReportItem.cs" />
     <Compile Include="Models\Transaction\Transaction.cs" />
     <Compile Include="Models\Category\Category.cs" />
     <Compile Include="Models\Period\Period.cs" />

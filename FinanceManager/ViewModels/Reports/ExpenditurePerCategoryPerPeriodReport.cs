@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace FinanceManager.Models.Reports
+﻿namespace FinanceManager.ViewModels.Reports
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
     public class ExpenditurePerCategoryPerPeriodReport
     {
         public IEnumerable<string> Periods => Items.OrderBy(i=> i.Period).GroupBy(i => i.Period).Select(i => i.Key);

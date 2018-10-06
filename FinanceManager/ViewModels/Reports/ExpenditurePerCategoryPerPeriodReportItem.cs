@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace FinanceManager.Models.Reports
+﻿namespace FinanceManager.ViewModels.Reports
 {
     using System.ComponentModel.DataAnnotations;
 
