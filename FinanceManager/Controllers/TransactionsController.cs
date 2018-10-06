@@ -15,6 +15,7 @@ namespace FinanceManager.Controllers
     using Models.Account;
     using Models.Category;
     using Models.Period;
+    using ViewModels;
     using ViewModels.Transactions;
 
     public class TransactionsController : Controller
@@ -56,8 +57,10 @@ namespace FinanceManager.Controllers
 
             return View("TransactionsView", new TransactionsViewViewModel()
             {
-                GroupType = groupType.IsEmpty() ? "Type" :groupType,
-                TransactionGroupViewModels = results
+                GroupType = groupType.IsEmpty() ? "Type" : groupType,
+                TransactionGroupViewModels = results,
+                SelectedGrouping = groupType.IsEmpty() ? "Transaction" : groupType
+
             });
 
         }
@@ -95,9 +98,11 @@ namespace FinanceManager.Controllers
         }
 
         // GET: Transactions/Create
-        public ActionResult Create()
+        public async Task<ActionResult> Create()
         {
-            return View();
+            var categories = await db.Categories.ToListAsync();
+            var accounts = await db.Accounts.ToListAsync();
+            return View(new CreateTransactionViewModel() { Accounts = accounts, Categories = categories });
         }
 
         // POST: Transactions/Create
@@ -105,17 +110,26 @@ namespace FinanceManager.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "TransactionDate,Description,Amount,AccountName,TransactionCategoryName")] Transaction transaction)
+        public async Task<ActionResult> Create([Bind(Include = "TransactionDate,Description,Amount,SelectedAccount,SelectedCategory")] CreateTransactionViewModel transaction)
         {
             if (ModelState.IsValid)
             {
-                db.Transactions.Add(transaction);
+                var account = await db.Accounts.Where(a => a.Name == transaction.SelectedAccount).FirstAsync();
+                var category = await db.Categories.Where(a => a.Name == transaction.SelectedCategory)
+                    .FirstAsync();
+
+                var period = await db.Periods.Where(p =>
+                        p.PeriodStart <= transaction.TransactionDate && p.PeriodEnd >= transaction.TransactionDate)
+                    .FirstAsync();
+                var model = new Transaction() { Account = account, TransactionDate = transaction.TransactionDate, Amount = transaction.Amount, Category = category, Period = period, Description = transaction.Description };
+                db.Transactions.Add(model);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(transaction);
+            return await Index(string.Empty);
         }
+
 
         // GET: Transactions/Edit/5
         public async Task<ActionResult> Edit(int? id)

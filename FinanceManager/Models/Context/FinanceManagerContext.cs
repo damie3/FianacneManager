@@ -25,7 +25,7 @@ namespace FinanceManager.Models.Context
             base.OnModelCreating(modelBuilder);
         }
 
-        public System.Data.Entity.DbSet<Category> TransactionCategories { get; set; }
+        public System.Data.Entity.DbSet<Category> Categories { get; set; }
         public System.Data.Entity.DbSet<Period>Periods { get; set; }
         public System.Data.Entity.DbSet<FinanceManager.Models.Account.Account> Accounts { get; set; }
         public System.Data.Entity.DbSet<FinanceManager.Models.Transaction.Transaction> Transactions { get; set; }

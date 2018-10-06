@@ -1,4 +1,4 @@
-﻿@model FinanceManager.Models.Transaction.Transaction
+﻿@model FinanceManager.ViewModels.Transactions.CreateTransactionViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -16,37 +16,37 @@
     <h4>Transaction</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.Label("Account", htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="form-group row">
+        @Html.Label("Account", htmlAttributes: new { @class = "control-label col-md-2 font-weight-bold text-right" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.AccountName, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.AccountName, "", new { @class = "text-danger" })
+            @Html.DropDownListFor(model => model.SelectedAccount, Model.AccountItems,new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.SelectedAccount, "", new { @class = "text-danger" })
         </div>
     </div>
-    <div class="form-group">
-        @Html.Label("Date", htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="form-group row ">
+        @Html.Label("Date", htmlAttributes: new { @class = "control-label col-md-2 font-weight-bold text-right" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.TransactionDate, new { htmlAttributes = new { @class = "form-control datepicker" } })
             @Html.ValidationMessageFor(model => model.TransactionDate, "", new { @class = "text-danger" })
         </div>
     </div>
-    <div class="form-group">
-        @Html.Label("Category", htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="form-group row">
+        @Html.Label("Category", htmlAttributes: new { @class = "control-label col-md-2 font-weight-bold text-right" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.TransactionCategoryName, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.TransactionCategoryName, "", new { @class = "text-danger" })
+            @Html.DropDownListFor(model => model.SelectedCategory,Model.CategoryItems, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.SelectedCategory, "", new { @class = "text-danger" })
         </div>
     </div>
-    <div class="form-group">
-        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="form-group row ">
+        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2 font-weight-bold text-right" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
         </div>
     </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Amount, htmlAttributes: new { @class = "control-label col-md-2" })
+    <div class="form-group row">
+        @Html.LabelFor(model => model.Amount, htmlAttributes: new { @class = "control-label col-md-2 font-weight-bold text-right" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @type = "number", @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })

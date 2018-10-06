@@ -15,6 +15,8 @@
         [StringLength(20)]
         public string Name { get; set; }
 
+        [NotMapped] public string ShortName => Name.Substring(Name.IndexOf(' ') + 1);
+
         [Required]
         public DateTime PeriodStart { get; set; }
 

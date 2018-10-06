@@ -30,8 +30,8 @@ namespace FinanceManager
             );
             routes.MapRoute(
                 name: "Budget",
-                url: "{controller}/{action}",
-                defaults: new { controller = "Budget", action = "Index" }
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Budget", action = "Index", id = UrlParameter.Optional }
             );
             routes.MapRoute(
                 name: "Reports",
