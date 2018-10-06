@@ -31,5 +31,6 @@ namespace FinanceManager.Models.Context
         public System.Data.Entity.DbSet<FinanceManager.Models.Transaction.Transaction> Transactions { get; set; }
 
         public System.Data.Entity.DbSet<FinanceManager.Models.Budget.BudgetItem> BudgetItems { get; set; }
+        public System.Data.Entity.DbSet<ReportCategoryExclusion> ReportCategoryExclusions { get; set; }
     }
 }

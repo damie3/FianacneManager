@@ -26,6 +26,17 @@
                     </div>
                 </div>
                 <div id="@itemId" class="card-body panel-collapse collapse in">
+                    <div class="row font-weight-bold">
+                        <div class="col-sm-4 text-right">
+                            @Html.Label("Category")
+                        </div>
+                        <div class="col-sm-4 text-right">
+                            @Html.Label("Budgeted")
+                        </div>
+                        <div class="col-sm-4 text-right">
+                            @Html.Label("Spent")
+                        </div>
+                    </div>
                     @foreach (var vm in item.ViewModelItems)
                     {
                         <div class="row">

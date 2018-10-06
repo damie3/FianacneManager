@@ -161,11 +161,13 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BudgetController.cs" />
-    <Compile Include="Migrations\201810012346194_Initial.cs" />
-    <Compile Include="Migrations\201810012346194_Initial.Designer.cs">
-      <DependentUpon>201810012346194_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201810061941527_initial.cs" />
+    <Compile Include="Migrations\201810061941527_initial.Designer.cs">
+      <DependentUpon>201810061941527_initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Budget\BudgetItem.cs" />
+    <Compile Include="Models\Category\ReportCategoryExclusion.cs" />
     <Compile Include="ViewModels\Budget\CreateBudgetItemViewModel.cs" />
     <Compile Include="ViewModels\Budget\BudgetPeriodViewModel.cs" />
     <Compile Include="ViewModels\Budget\BudgetViewViewModel.cs" />
@@ -183,7 +185,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\Helper\CustomMySqlMigrationSqlGenerator.cs" />
     <Compile Include="Models\Context\FinanceManagerContext.cs" />
     <Compile Include="ViewModels\Reports\AccountBalanceReportItem.cs" />
@@ -222,6 +223,7 @@
     <Content Include="Scripts\bootstrap\bootstrap.bundle.min.js.map" />
     <Content Include="Scripts\bootstrap\bootstrap.js.map" />
     <Content Include="Scripts\bootstrap\bootstrap.min.js.map" />
+    <None Include="Properties\PublishProfiles\FinanceManager20181006104034 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\bootstrap\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap\bootstrap.bundle.min.js" />
@@ -277,8 +279,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201810012346194_Initial.resx">
-      <DependentUpon>201810012346194_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201810061941527_initial.resx">
+      <DependentUpon>201810061941527_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

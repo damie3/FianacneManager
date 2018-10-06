@@ -3,7 +3,7 @@ namespace FinanceManager.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial : DbMigration
+    public partial class initial : DbMigration
     {
         public override void Up()
         {
@@ -12,8 +12,8 @@ namespace FinanceManager.Migrations
                 c => new
                     {
                         AccountId = c.Int(nullable: false, identity: true),
-                        Name = c.String(maxLength: 20, storeType: "nvarchar"),
-                        Description = c.String(maxLength: 30, storeType: "nvarchar"),
+                        Name = c.String(maxLength: 20),
+                        Description = c.String(maxLength: 30),
                     })
                 .PrimaryKey(t => t.AccountId)
                 .Index(t => t.Name, unique: true);
@@ -23,7 +23,7 @@ namespace FinanceManager.Migrations
                 c => new
                     {
                         BudgetItemId = c.Int(nullable: false, identity: true),
-                        Description = c.String(maxLength: 30, storeType: "nvarchar"),
+                        Description = c.String(maxLength: 30),
                         Amount = c.Double(nullable: false),
                         Category_CategoryId = c.Int(nullable: false),
                         Period_PeriodId = c.Int(nullable: false),
@@ -39,8 +39,8 @@ namespace FinanceManager.Migrations
                 c => new
                     {
                         CategoryId = c.Int(nullable: false, identity: true),
-                        Name = c.String(maxLength: 20, storeType: "nvarchar"),
-                        Description = c.String(maxLength: 30, storeType: "nvarchar"),
+                        Name = c.String(maxLength: 20),
+                        Description = c.String(maxLength: 30),
                     })
                 .PrimaryKey(t => t.CategoryId)
                 .Index(t => t.Name, unique: true);
@@ -50,20 +50,31 @@ namespace FinanceManager.Migrations
                 c => new
                     {
                         PeriodId = c.Int(nullable: false, identity: true),
-                        Name = c.String(maxLength: 20, storeType: "nvarchar"),
-                        PeriodStart = c.DateTime(nullable: false, precision: 0),
-                        PeriodEnd = c.DateTime(nullable: false, precision: 0),
+                        Name = c.String(maxLength: 20),
+                        PeriodStart = c.DateTime(nullable: false),
+                        PeriodEnd = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.PeriodId)
                 .Index(t => t.Name, unique: true);
+            
+            CreateTable(
+                "dbo.ReportCategoryExclusion",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Category_CategoryId = c.Int(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Category", t => t.Category_CategoryId)
+                .Index(t => t.Category_CategoryId);
             
             CreateTable(
                 "dbo.Transaction",
                 c => new
                     {
                         TransactionId = c.Int(nullable: false, identity: true),
-                        TransactionDate = c.DateTime(nullable: false, precision: 0),
-                        Description = c.String(maxLength: 30, storeType: "nvarchar"),
+                        TransactionDate = c.DateTime(nullable: false),
+                        Description = c.String(maxLength: 30),
                         Amount = c.Double(nullable: false),
                         Account_AccountId = c.Int(nullable: false),
                         Category_CategoryId = c.Int(nullable: false),
@@ -84,17 +95,20 @@ namespace FinanceManager.Migrations
             DropForeignKey("dbo.Transaction", "Period_PeriodId", "dbo.Period");
             DropForeignKey("dbo.Transaction", "Category_CategoryId", "dbo.Category");
             DropForeignKey("dbo.Transaction", "Account_AccountId", "dbo.Account");
+            DropForeignKey("dbo.ReportCategoryExclusion", "Category_CategoryId", "dbo.Category");
             DropForeignKey("dbo.BudgetItem", "Period_PeriodId", "dbo.Period");
             DropForeignKey("dbo.BudgetItem", "Category_CategoryId", "dbo.Category");
             DropIndex("dbo.Transaction", new[] { "Period_PeriodId" });
             DropIndex("dbo.Transaction", new[] { "Category_CategoryId" });
             DropIndex("dbo.Transaction", new[] { "Account_AccountId" });
+            DropIndex("dbo.ReportCategoryExclusion", new[] { "Category_CategoryId" });
             DropIndex("dbo.Period", new[] { "Name" });
             DropIndex("dbo.Category", new[] { "Name" });
             DropIndex("dbo.BudgetItem", new[] { "Period_PeriodId" });
             DropIndex("dbo.BudgetItem", new[] { "Category_CategoryId" });
             DropIndex("dbo.Account", new[] { "Name" });
             DropTable("dbo.Transaction");
+            DropTable("dbo.ReportCategoryExclusion");
             DropTable("dbo.Period");
             DropTable("dbo.Category");
             DropTable("dbo.BudgetItem");

@@ -1,6 +1,5 @@
 namespace FinanceManager.Migrations
 {
-    using FinanceManager.Migrations.Helper;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -10,9 +9,7 @@ namespace FinanceManager.Migrations
     {
         public Configuration()
         {
-            //AutomaticMigrationsEnabled = true;
-            SetSqlGenerator("MySql.Data.MySqlClient", new CustomMySqlMigrationSqlGenerator());
-            AutomaticMigrationDataLossAllowed = true;
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(FinanceManager.Models.Context.FinanceManagerContext context)

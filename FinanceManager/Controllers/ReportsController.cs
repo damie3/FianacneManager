@@ -36,10 +36,8 @@ namespace FinanceManager.Controllers
 
         public async Task<ActionResult> BudgetVsExpenditureReport()
         {
-            var periods = await db.Periods.ToListAsync();
-
             var selectMany = await db.Periods
-                .SelectMany(p => db.Categories, (p, c) => new { p, c })
+                .SelectMany(p => db.Categories.Where(c => db.ReportCategoryExclusions.All(a => a.Category != c)), (p, c) => new { p, c })
                 .SelectMany(
                     pc => db.Transactions
                         .Where(t => t.Category.CategoryId == pc.c.CategoryId && t.Period.PeriodId == pc.p.PeriodId)
@@ -63,7 +61,7 @@ namespace FinanceManager.Controllers
                 {
                     Period = s.Key,
                     ViewModelItems = s.AsEnumerable()
-                });
+                }).OrderBy(o => o.Period.Name);
 
             return View("BudgetVsExpenditureView", result);
         }

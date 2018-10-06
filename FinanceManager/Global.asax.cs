@@ -9,6 +9,7 @@ using System.Web.Routing;
 namespace FinanceManager
 {
     using System.Data.Entity;
+    using Migrations;
     using Models.Context;
 
     public class MvcApplication : System.Web.HttpApplication
@@ -19,7 +20,7 @@ namespace FinanceManager
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            Database.SetInitializer<FinanceManagerContext>(new DropCreateDatabaseIfModelChanges<FinanceManagerContext>());
+            //Database.SetInitializer<FinanceManagerContext>(new MigrateDatabaseToLatestVersion<FinanceManagerContext,Configuration>());
         }
     }
 }
