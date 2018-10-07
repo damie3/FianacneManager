@@ -19,7 +19,7 @@ namespace FinanceManager.Models.Transaction
         public int TransactionId { get; set; }
 
         [Required]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MM-yyyy}")]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime TransactionDate { get; set; }
 
         [Column(TypeName = "NVARCHAR")]
