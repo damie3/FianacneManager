@@ -9,18 +9,15 @@
 </head>
 <body>
 <div class="navbar navbar-expand-md fixed-top bg-dark navbar-dark">
-    @Html.ActionLink("Finance Manager", "Index", "Home", new {area = ""}, new {@class = "navbar-brand"})
+    @Html.ActionLink("Finance Manager", "Index", "Transactions", new {groupType = "Account"}, new {@class = "navbar-brand"})
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">@Html.ActionLink("Home", "Index", "Home", null, new {@class = "nav-link"})</li>
-                <li class="nav-item">@Html.ActionLink("Transactions", "Index", "Transactions", null, new {@class = "nav-link"})</li>
+                <li class="nav-item">@Html.ActionLink("Transactions", "Index", "Transactions", new { groupType = "Account" }, new {@class = "nav-link"})</li>
                 <li class="nav-item">@Html.ActionLink("Budget", "Index", "Budget", null, new {@class = "nav-link"})</li>
                 <li class="nav-item">@Html.ActionLink("Reports", "BudgetVsExpenditureReport", "Reports", null, new {@class = "nav-link"})</li>
-                <li class="nav-item">@Html.ActionLink("About", "About", "Home", null, new {@class = "nav-link"})</li>
-                <li class="nav-item">@Html.ActionLink("Contact", "Contact", "Home", null, new {@class = "nav-link"})</li>
             </ul>
     </div>
 </div>

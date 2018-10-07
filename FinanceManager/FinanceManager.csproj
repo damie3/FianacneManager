@@ -166,6 +166,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BudgetController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Migrations\201810061941527_initial.cs" />
     <Compile Include="Migrations\201810061941527_initial.Designer.cs">
       <DependentUpon>201810061941527_initial.cs</DependentUpon>
@@ -184,7 +185,6 @@
     <Compile Include="ViewModels\Transactions\CreateTransactionViewModel.cs" />
     <Compile Include="ViewModels\Transactions\TransactionGroupViewModel.cs" />
     <Compile Include="ViewModels\Transactions\TransactionsViewViewModel.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\TransactionsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -290,9 +290,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Transactions\Delete.cshtml" />
     <Content Include="Views\Transactions\Details.cshtml" />
     <Content Include="Views\Transactions\Edit.cshtml" />
@@ -317,6 +314,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Home\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
