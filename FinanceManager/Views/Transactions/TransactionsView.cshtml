@@ -7,20 +7,21 @@
 <h2>Transactions</h2>
 <br />
 
+<div class="container col-12">
+    <div class="row">
+        <div class="col-2 col-lg-1">
+            <a href='@Url.Action("Create", "Transactions")'>Create</a>
+        </div>
 
-<div class="row">
-    <div class="col-sm-2">
-        <a href='@Url.Action("Create", "Transactions")'>New Transaction</a>
-    </div>
-
-    <div class="col-sm-3">
-        @using (Html.BeginForm("Index", "Transactions", FormMethod.Get))
-        {
-            <div class="row">
-                @Html.Label("Grouping:", htmlAttributes: new { @class = "control-label col-4" })
-                @Html.DropDownList("groupType", Model.GroupingItems, new { onchange = "form.submit();", style = "height:25px" })
-            </div>
-        }
+        <div class="col-6 col-lg-3">
+            @using (Html.BeginForm("Index", "Transactions", FormMethod.Get))
+            {
+                <div class="row">
+                    @Html.Label("Group:", htmlAttributes: new { @class = "control-label col-lg-4 col-4" })
+                    @Html.DropDownList("groupType", Model.GroupingItems, new { onchange = "form.submit();", style = "height:25px" })
+                </div>
+            }
+        </div>
     </div>
 </div>
 
@@ -28,16 +29,16 @@
 {
     var itemId = "T" + item.GroupName.Replace(" ", "").Replace("/", "");
     <div class="row pb-2">
-        <div class="container col-sm-12">
+        <div class="container col-12">
 
             <div class="card">
                 <div class="card-header" data-toggle="collapse" data-target="#@itemId" 
                    href="#@itemId">
                     <div class="row">
-                        <div class="col-sm-6">
+                        <div class="col-7">
                             <span class="font-weight-bold">@Html.DisplayFor(periodName => Model.GroupType): </span> @Html.DisplayFor(groupName => item.GroupName)
                         </div>
-                        <div class="col-sm-6 text-right">
+                        <div class="col-5 text-right">
                             <span class="font-weight-bold">Total:</span> @Html.DisplayFor(periodTotal => item.Total)
                         </div>
                     </div>
@@ -46,21 +47,21 @@
                     @foreach (var transaction in item.Transactions)
                     {
                         <div class="row" style="border-top: 1px solid lightgray">
-                            <div class="col-1">
+                            <div class="col-lg-1 col-2 d-none d-sm-table-cell">
                                 @Html.DisplayFor(transactionAccount => transaction.Account.Name)
                             </div>
-                            <div class="col-2">
+                            <div class="col-lg-2 col-4">
                                 @Html.DisplayFor(date => transaction.TransactionDate)
                             </div>
 
 
-                            <div class="col-2">
+                            <div class="col-lg-2 col-5">
                                 @Html.DisplayFor(transactionCategory => transaction.Category.Name)
                             </div>
-                            <div class="col-5 ">
+                            <div class="col-lg-5 d-none d-sm-table-cell">
                                 @Html.DisplayFor(description => transaction.Description)
                             </div>
-                            <div class="col-2 text-right">
+                            <div class="col-lg-2 col-3 text-right">
                                 @Html.DisplayFor(amount => transaction.Amount)
                                 <a href='@Url.Action("Delete", "Transactions", new { id = @transaction.TransactionId })'>
                                     <img src='@Url.Content("~/Content/Images/icons8-delete-50.png")' style="width: 12px; height: 10px" />

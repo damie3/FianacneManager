@@ -7,9 +7,11 @@
 }
 <h2>Budget</h2>
 <br />
-<div class="row">
-    <div class="col-sm-2">
-        <a href='@Url.Action("Create", "Budget")'>New BudgetItem</a>
+<div class="container col-lg-8 col-12">
+    <div class="row">
+        <div class="col-lg-2">
+            <a href='@Url.Action("Create", "Budget")'>Create</a>
+        </div>
     </div>
 </div>
 
@@ -17,16 +19,16 @@
 {
     var itemId = "B" + item.Period.Name.Replace(" ", "").Replace("/", "");
     <div class="row pb-2">
-        <div class="container col-sm-8">
+        <div class="container col-12 col-lg-8">
 
             <div class="card">
                 <div class="card-header" data-toggle="collapse" data-target="#@itemId"
                      href="#@itemId">
                     <div class="row">
-                        <div class="col-sm-6">
+                        <div class="col-7">
                             <span class="font-weight-bold">Period: </span> @Html.DisplayFor(periodName => item.Period.Name)
                         </div>
-                        <div class="col-sm-6 text-right">
+                        <div class="col-5 text-right">
                             <span class="font-weight-bold">Total:</span> @Html.DisplayFor(periodTotal => item.Total)
                         </div>
                     </div>
@@ -35,13 +37,13 @@
                     @foreach (var budgetItem in item.Items)
                     {
                         <div class="row">
-                            <div class="col-sm-3 text-right">
+                            <div class="col-lg-3 col-7">
                                 @Html.DisplayFor(category => budgetItem.Category.Name)
                             </div>
-                            <div class="col-sm-7">
+                            <div class="col-lg-7 col-5 d-none d-sm-table-cell">
                                 @Html.DisplayFor(description => budgetItem.Description)
                             </div>
-                            <div class="col-sm-2 text-right">
+                            <div class="col-lg-2 col-5 text-right">
                                 @Html.DisplayFor(amount => budgetItem.Amount)
                                 <a href='@Url.Action("Delete", "Budget", new { id = @budgetItem.BudgetItemId })'>
                                     <img src='@Url.Content("~/Content/Images/icons8-delete-50.png")' style="width: 12px; height: 10px" />
@@ -52,7 +54,7 @@
                 </div>
             </div>
         </div>
-        <div class="container col-sm-4"></div>
+        <div class="container col-lg-4"></div>
     </div>
 
 }

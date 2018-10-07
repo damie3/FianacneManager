@@ -8,21 +8,22 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-<nav class="navbar navbar-expand-md fixed-top bg-dark navbar-dark">
-    <div class="container">
-        @Html.ActionLink("Finance Manager", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-        <div class="navbar-collapse collapse">
+<div class="navbar navbar-expand-md fixed-top bg-dark navbar-dark">
+    @Html.ActionLink("Finance Manager", "Index", "Home", new {area = ""}, new {@class = "navbar-brand"})
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">@Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })</li>
-                <li class="nav-item">@Html.ActionLink("Transactions", "Index", "Transactions", null, new { @class = "nav-link" })</li>
-                <li class="nav-item">@Html.ActionLink("Budget", "Index", "Budget", null, new { @class = "nav-link" })</li>
-                <li class="nav-item">@Html.ActionLink("Reports", "AccountBalanceReport", "Reports", null, new { @class = "nav-link" })</li>
-                <li class="nav-item">@Html.ActionLink("About", "About", "Home", null, new { @class = "nav-link" })</li>
-                <li class="nav-item">@Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link" })</li>
+                <li class="nav-item">@Html.ActionLink("Home", "Index", "Home", null, new {@class = "nav-link"})</li>
+                <li class="nav-item">@Html.ActionLink("Transactions", "Index", "Transactions", null, new {@class = "nav-link"})</li>
+                <li class="nav-item">@Html.ActionLink("Budget", "Index", "Budget", null, new {@class = "nav-link"})</li>
+                <li class="nav-item">@Html.ActionLink("Reports", "AccountBalanceReport", "Reports", null, new {@class = "nav-link"})</li>
+                <li class="nav-item">@Html.ActionLink("About", "About", "Home", null, new {@class = "nav-link"})</li>
+                <li class="nav-item">@Html.ActionLink("Contact", "Contact", "Home", null, new {@class = "nav-link"})</li>
             </ul>
-        </div>
     </div>
-</nav>
+</div>
 <div class="container body-content">
     <br />
     @RenderBody()
