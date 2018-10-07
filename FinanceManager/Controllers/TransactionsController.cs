@@ -182,9 +182,13 @@ namespace FinanceManager.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Transaction transaction = await db.Transactions.FindAsync(id);
-            db.Transactions.Remove(transaction);
-            await db.SaveChangesAsync();
+            var transaction = await db.Transactions.Include(t => t.Period).Include(t=> t.Account).Include(t=> t.Category)
+                .SingleOrDefaultAsync(t => t.TransactionId == id);
+            if (transaction != null)
+            {
+                db.Transactions.Remove(transaction);
+                await db.SaveChangesAsync();
+            }
             return RedirectToAction("Index");
         }
 

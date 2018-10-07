@@ -20,7 +20,7 @@ namespace FinanceManager.Models.Transaction
 
         [Required]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
-        public DateTime TransactionDate { get; set; }
+        public DateTime TransactionDate { get; set; } = DateTime.Now;
 
         [Column(TypeName = "NVARCHAR")]
         [StringLength(30)]

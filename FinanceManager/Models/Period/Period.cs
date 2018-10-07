@@ -18,9 +18,9 @@
         [NotMapped] public string ShortName => Name.Substring(Name.IndexOf(' ') + 1);
 
         [Required]
-        public DateTime PeriodStart { get; set; }
+        public DateTime PeriodStart { get; set; } = DateTime.Now;
 
         [Required]
-        public DateTime PeriodEnd { get; set; }
+        public DateTime PeriodEnd { get; set; } = DateTime.Now;
     }
 }
