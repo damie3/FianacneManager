@@ -178,10 +178,8 @@
     <Compile Include="ViewModels\Budget\BudgetPeriodViewModel.cs" />
     <Compile Include="ViewModels\Budget\BudgetViewViewModel.cs" />
     <Compile Include="ViewModels\Reports\BudgetVsExpenditureBudgetItem.cs" />
-    <Compile Include="ViewModels\Reports\BudgetVsExpenditureItem.cs" />
     <Compile Include="ViewModels\Reports\BudgetVsExpenditureViewModel.cs" />
     <Compile Include="ViewModels\Reports\BudgetVsExpenditureViewModelItem.cs" />
-    <Compile Include="ViewModels\Reports\BudgetVsExpenditureViewViewModel.cs" />
     <Compile Include="ViewModels\Reports\SavingsReport\SavingsReportBudgetItemViewModel.cs" />
     <Compile Include="ViewModels\Reports\SavingsReport\SavingsReportTransactionViewModel.cs" />
     <Compile Include="ViewModels\Reports\SavingsReport\SavingsReportViewModel.cs" />

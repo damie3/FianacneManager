@@ -55,7 +55,7 @@ namespace FinanceManager.Controllers
                             .Sum(s => s.b.AggregatedAmount),
                         Savings1Amount = g.Where(w => w.t != null && w.t.AccountName == "Savings1").Sum(s => s.t.Amount),
                         Savings2Amount = g.Where(w => w.t != null && w.t.AccountName == "Savings2").Sum(s => s.t.Amount)
-                    });
+                    }).OrderBy(o=> o.Period.Name);
 
             return View(new SavingsReportViewModel()
             {
@@ -93,7 +93,7 @@ namespace FinanceManager.Controllers
             var result = selectMany.GroupBy(b => b.Period).Select(s => new BudgetVsExpenditureViewModel()
                 {
                     Period = s.Key,
-                    ViewModelItems = s.AsEnumerable()
+                    ViewModelItems = s.AsEnumerable().OrderBy(o=> o.Category.Name)
                 }).OrderBy(o => o.Period.Name);
 
             return View("BudgetVsExpenditureView", result);

@@ -30,7 +30,7 @@ namespace FinanceManager.Controllers
             var result = groupBy.Select(s => new BudgetPeriodViewModel()
             {
                 Period = s.Key,
-                Items = s.AsEnumerable()
+                Items = s.AsEnumerable().OrderBy(o => o.Category.Name)
             });
             return View("BudgetView", new BudgetViewViewModel()
             {
