@@ -13,7 +13,7 @@ namespace FinanceManager.ViewModels.Budget
     {
         public Period Period { get; set; }
         public IEnumerable<BudgetItem> Items { get; set; }
-        [DisplayFormat(DataFormatString = "{0:0.00}")]
+        [DisplayFormat(DataFormatString = "{0:#,##0.00}")]
         public double Total => Items.Sum(i => i.Amount);
     }
 }

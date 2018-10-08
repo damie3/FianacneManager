@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace FinanceManager.Models.Reports
+namespace FinanceManager.ViewModels.Reports.SavingsReport
 {
-    using System.ComponentModel.DataAnnotations;
+    using Models.Period;
 
-    public class AccountBalanceReportItem
+    public class SavingsReportTransactionViewModel
     {
+        public Period Period { get; set; }
         public string AccountName { get; set; }
-        [DisplayFormat(DataFormatString = "{0:#,##0.00}")]
         public double Amount { get; set; }
     }
 }

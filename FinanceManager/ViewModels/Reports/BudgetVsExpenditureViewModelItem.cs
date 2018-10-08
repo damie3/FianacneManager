@@ -13,9 +13,9 @@ namespace FinanceManager.ViewModels.Reports
     {
         public Period Period { get; set; }
         public Category Category { get; set; }
-        [DisplayFormat(DataFormatString = "{0:0.00}")]
+        [DisplayFormat(DataFormatString = "{0:#,##0.00}")]
         public double TransactionAmount { get; set; }
-        [DisplayFormat(DataFormatString = "{0:0.00}")]
+        [DisplayFormat(DataFormatString = "{0:#,##0.00}")]
         public double BudgetAmount { get; set; }
 
     }

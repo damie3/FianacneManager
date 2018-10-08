@@ -23,7 +23,7 @@ namespace FinanceManager.ViewModels.Budget
         public string SelectedPeriod { get; set; }
         public IEnumerable<SelectListItem> PeriodItems => _periodItems ?? (_periodItems = Periods.Select(p => CreateSelectItem(p.Name, p.Name)));
 
-        [DisplayFormat(DataFormatString = "{0:0.00}")]
+        [DisplayFormat(DataFormatString = "{0:#,##0.00}")]
         public double Amount { get; set; }
         public string Description { get; set; }
 

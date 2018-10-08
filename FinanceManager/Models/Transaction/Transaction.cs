@@ -28,7 +28,7 @@ namespace FinanceManager.Models.Transaction
 
         [Required]
         public Category Category{ get;set; } = new Category();
-        [DisplayFormat(DataFormatString = "{0:0.00}")]
+        [DisplayFormat(DataFormatString = "{0:#,##0.00}")]
         public double Amount { get; set; }
 
         [Required]

@@ -25,7 +25,7 @@ namespace FinanceManager.Controllers
         public async Task<ActionResult> Index()
         {
 
-            var budgetItems = await db.BudgetItems.Include(t => t.Period).Include(t => t.Category).ToListAsync();
+            var budgetItems = await db.BudgetItems.Include(t => t.Period).Include(t => t.Category).OrderBy(bi=> bi.Period.Name).ToListAsync();
             var groupBy = budgetItems.GroupBy(i => i.Period);
             var result = groupBy.Select(s => new BudgetPeriodViewModel()
             {

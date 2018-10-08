@@ -22,7 +22,7 @@
         public string SelectedAccount { get; set; }
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MMM-yyyy}")]
         public DateTime TransactionDate { get; set; } = DateTime.Now;
-        [DisplayFormat(DataFormatString = "{0:0.00}")]
+        [DisplayFormat(DataFormatString = "{0:#,##0.00}")]
         public double Amount { get; set; }
         public string Description { get; set; }
 
